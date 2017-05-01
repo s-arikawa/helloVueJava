@@ -93,6 +93,18 @@ public class Main {
 
 ### 3. frontend - vue.jsを構築
 
+- .gitignoreを書く
+    - `/node_modules`
+- npmで必要なライブラリを追加する
+    - `npm i -S vue materialize-css`
+    - `npm i -D babel-core babel-loader babel-preset-es2015 css-loader file-loader style-loader url-loader vue-loader vue-template-compiler webpack webpack-dev-server`
+- .babelrcを書く
+    ```
+    {
+        "presets": ["es2015"]
+    }
+    ```
+
 
 
 
