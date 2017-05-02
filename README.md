@@ -151,5 +151,6 @@ Javaと違って実装するファイルが多いのでファイルの内容は�
 - Vue.js関連
     - [GUIアプリケーションアーキテクチャ総合！みたいなやつ書いてる](http://nekogata.hatenablog.com/entry/2017/03/26/132150)
         - この記事読んでフロントエンド開発やってみようと思った。
+    - <https://github.com/lavenderx/modern-java-web-scaffold>
 - [materializecss](http://materializecss.com/)
     - 簡単にキレイになって好き
