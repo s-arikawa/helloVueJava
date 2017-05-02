@@ -376,6 +376,29 @@ blockquote {
 </head>
 <body>
 <h1>Hello World Vue.js + Java Application</h1>
+<!-- TOC -->
+<ul>
+<li><a href="#hello-world-vuejs--java-application">Hello World Vue.js + Java Application</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%A6%81">概要</a></li>
+<li><a href="#%E6%A7%8B%E7%AF%89%E6%89%8B%E9%A0%86">構築手順</a>
+<ul>
+<li><a href="#1-gradle%E3%81%A8npm%E5%88%9D%E6%9C%9F%E8%A8%AD%E5%AE%9A">1. gradleとnpm初期設定</a></li>
+<li><a href="#2-backend---java%E3%82%92%E6%A7%8B%E7%AF%89">2. backend - Javaを構築</a>
+<ul>
+<li><a href="#samplecontrollerjava">SampleController.java</a></li>
+<li><a href="#mainjava">Main.java</a></li>
+</ul>
+</li>
+<li><a href="#3-frontend---vuejs%E3%82%92%E6%A7%8B%E7%AF%89">3. frontend - vue.jsを構築</a></li>
+<li><a href="#4-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E8%B5%B7%E5%8B%95%E3%81%99%E3%82%8B">4. アプリケーションを起動する</a></li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
 <h2>概要</h2>
 <p>Vue.jsをフロントエンドに、Javaで書いたWeb APIをバックエンドにしたアプリケーション。</p>
 <p>JavaのHello World REST APIを作って、フロントエンドのvue.jsに表示するだけのシステムを作る。</p>
@@ -391,8 +414,7 @@ cd ../frontend
 npm init
 </div></code></pre>
 <h3>2. backend - Javaを構築</h3>
-<p>Spring BootのHello Worldを構築する
-https://projects.spring.io/spring-boot/</p>
+<p>Spring BootでHello Worldを構築する。</p>
 <ol>
 <li>project nameを変更
 <ul>
@@ -402,7 +424,7 @@ https://projects.spring.io/spring-boot/</p>
 </li>
 <li>gradleにSpring Boot Gradle pluginを追加する
 <ul>
-<li>https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-gradle-plugin.html</li>
+<li><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-gradle-plugin.html">build-tool-plugins-gradle-plugin</a></li>
 </ul>
 </li>
 <li>Spring Boot Webを依存関係に追加
@@ -444,7 +466,7 @@ https://projects.spring.io/spring-boot/</p>
 </ul>
 </li>
 </ol>
-<p>SampleController.java</p>
+<h4>SampleController.java</h4>
 <pre class="hljs"><code><div><span class="hljs-keyword">package</span> hello;
 
 <span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.GetMapping;
@@ -459,7 +481,7 @@ https://projects.spring.io/spring-boot/</p>
     }
 }
 </div></code></pre>
-<p>Main.java</p>
+<h4>Main.java</h4>
 <pre class="hljs"><code><div><span class="hljs-keyword">package</span> hello;
 
 <span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;
@@ -474,6 +496,81 @@ https://projects.spring.io/spring-boot/</p>
 }
 </div></code></pre>
 <h3>3. frontend - vue.jsを構築</h3>
+<p>Javaと違って実装するファイルが多いのでファイルの内容は割愛。</p>
+<ol>
+<li>.gitignoreを書く
+<ul>
+<li><code>/node_modules</code></li>
+</ul>
+</li>
+<li>npmで必要なライブラリを追加する
+<ul>
+<li><code>npm i -S vue materialize-css jquery</code></li>
+<li><code>npm i -D babel-core babel-loader babel-preset-es2015 css-loader file-loader style-loader url-loader vue-loader vue-template-compiler webpack webpack-dev-server</code></li>
+</ul>
+</li>
+<li>.babelrcを書く</li>
+<li>アプリケーションを実装する
+<ul>
+<li>src
+<ul>
+<li>js
+<ul>
+<li>domain : ドメインクラスを置く場所
+<ul>
+<li>Hello.js : WebAPI GET処理</li>
+</ul>
+</li>
+<li>presentation
+<ul>
+<li>vue_components
+<ul>
+<li>Application.vue : Vueコンポーネントのルート</li>
+<li>Hello.vue</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>index.js : Vueインスタンスを作る</li>
+</ul>
+</li>
+<li>index.html : index.jsを読み込むだけHTML</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>webpackの設定を書く
+<ul>
+<li><code>webpacl.config.js</code></li>
+</ul>
+</li>
+<li>package.jsonにbuildコマンドを追加する
+<ul>
+<li><code>&quot;build&quot;: &quot;mkdir -p build &amp;&amp; cp src/index.html build/index.html &amp;&amp; webpack&quot;,</code></li>
+</ul>
+</li>
+<li><code>build</code>フォルダにindex.htmlとbundle.jsなどが出来てたらOK</li>
+</ol>
+<h3>4. アプリケーションを起動する</h3>
+<ol>
+<li>Web APIを起動
+<ul>
+<li>cd backend</li>
+<li>gradle bootrun</li>
+</ul>
+</li>
+<li>フロントエンドのindex.htmlをブラウザで開く</li>
+<li><code>PRINT MESSAGE</code>ボタンを押して、<code>Hello World!!</code>と表示されたら成功!!
+<ul>
+<li>動かないときは、ブラウザのWeb開発ツールを開いてコンソールやデバッグしてみる。</li>
+</ul>
+</li>
+</ol>
+<h3>参考</h3>
+<ul>
+<li><a href="https://projects.spring.io/spring-boot/">Spring Boot</a></li>
+<li><a href="http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a#web-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8B">Spring Boot 使い方メモ - Qiita</a></li>
+</ul>
 
 </body>
 </html>

@@ -1,5 +1,20 @@
 # Hello World Vue.js + Java Application
 
+<!-- TOC -->
+
+- [Hello World Vue.js + Java Application](#hello-world-vuejs--java-application)
+    - [概要](#概要)
+    - [構築手順](#構築手順)
+        - [1. gradleとnpm初期設定](#1-gradleとnpm初期設定)
+        - [2. backend - Javaを構築](#2-backend---javaを構築)
+            - [SampleController.java](#samplecontrollerjava)
+            - [Main.java](#mainjava)
+        - [3. frontend - vue.jsを構築](#3-frontend---vuejsを構築)
+        - [4. アプリケーションを起動する](#4-アプリケーションを起動する)
+        - [参考](#参考)
+
+<!-- /TOC -->
+
 ## 概要
 Vue.jsをフロントエンドに、Javaで書いたWeb APIをバックエンドにしたアプリケーション。
 
@@ -28,7 +43,7 @@ Spring BootでHello Worldを構築する。
     - settings.gradle
     - `rootProject.name = 'hellovuejava-backend'`
 1. gradleにSpring Boot Gradle pluginを追加する
-    - https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-gradle-plugin.html
+    - <https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-gradle-plugin.html>
 1. Spring Boot Webを依存関係に追加
     - `spring-boot-starter-web`
 1. main classを変更
@@ -93,33 +108,39 @@ public class Main {
 
 ### 3. frontend - vue.jsを構築
 
-- .gitignoreを書く
+Javaと違って実装するファイルが多いのでファイルの内容は割愛。
+
+1. .gitignoreを書く
     - `/node_modules`
-- npmで必要なライブラリを追加する
-    - `npm i -S vue materialize-css`
+1. npmで必要なライブラリを追加する
+    - `npm i -S vue materialize-css jquery`
     - `npm i -D babel-core babel-loader babel-preset-es2015 css-loader file-loader style-loader url-loader vue-loader vue-template-compiler webpack webpack-dev-server`
-- .babelrcを書く
-    ```
-    {
-        "presets": ["es2015"]
-    }
-    ```
+1. .babelrcを書く
+1. アプリケーションを実装する
+    - src
+        - js
+            - domain : ドメインクラスを置く場所
+                - Hello.js : WebAPI GET処理
+            - presentation 
+                - vue_components
+                    - Application.vue : Vueコンポーネントのルート
+                    - Hello.vue
+            - index.js : Vueインスタンスを作る
+        - index.html : index.jsを読み込むだけHTML
+1. webpackの設定を書く
+    - `webpacl.config.js`
+1. package.jsonにbuildコマンドを追加する
+    - `"build": "mkdir -p build && cp src/index.html build/index.html && webpack",`
+1. `build`フォルダにindex.htmlとbundle.jsなどが出来てたらOK
 
+### 4. アプリケーションを起動する
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+1. Web APIを起動
+    - cd backend
+    - gradle bootrun
+2. フロントエンドのindex.htmlをブラウザで開く
+3. `PRINT MESSAGE`ボタンを押して、`Hello World!!`と表示されたら成功!!
+    - 動かないときは、ブラウザのWeb開発ツールを開いてコンソールやデバッグしてみる。
 
 
 
