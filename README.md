@@ -1,28 +1,28 @@
-# Hello World Vue.js + Java Application
+# 1. Hello World Vue.js + Java Application
 
 <!-- TOC -->
 
-- [Hello World Vue.js + Java Application](#hello-world-vuejs--java-application)
-    - [概要](#概要)
-    - [構築手順](#構築手順)
-        - [1. gradleとnpm初期設定](#1-gradleとnpm初期設定)
-        - [2. backend - Javaを構築](#2-backend---javaを構築)
-            - [SampleController.java](#samplecontrollerjava)
-            - [Main.java](#mainjava)
-        - [3. frontend - vue.jsを構築](#3-frontend---vuejsを構築)
-        - [4. アプリケーションを起動する](#4-アプリケーションを起動する)
-        - [参考](#参考)
+- [1. Hello World Vue.js + Java Application](#1-hello-world-vuejs--java-application)
+    - [1.1. 概要](#11-概要)
+    - [1.2. 構築手順](#12-構築手順)
+        - [1.2.1. gradleとnpm初期設定](#121-gradleとnpm初期設定)
+        - [1.2.2. backend - Javaを構築](#122-backend---javaを構築)
+            - [1.2.2.1. SampleController.java](#1221-samplecontrollerjava)
+            - [1.2.2.2. Main.java](#1222-mainjava)
+        - [1.2.3. frontend - vue.jsを構築](#123-frontend---vuejsを構築)
+        - [1.2.4. アプリケーションを起動する](#124-アプリケーションを起動する)
+    - [1.3. 参考](#13-参考)
 
 <!-- /TOC -->
 
-## 概要
+## 1.1. 概要
 Vue.jsをフロントエンドに、Javaで書いたWeb APIをバックエンドにしたアプリケーション。
 
 JavaのHello World REST APIを作って、フロントエンドのvue.jsに表示するだけのシステムを作る。
 
-## 構築手順
+## 1.2. 構築手順
 
-### 1. gradleとnpm初期設定
+### 1.2.1. gradleとnpm初期設定
 
 ```shell
 mkdir helloVueJava
@@ -35,7 +35,7 @@ cd ../frontend
 npm init
 ```
 
-### 2. backend - Javaを構築
+### 1.2.2. backend - Javaを構築
 
 Spring BootでHello Worldを構築する。
 
@@ -72,7 +72,7 @@ Spring BootでHello Worldを構築する。
 1. ブラウザで`http://localhost:8080/hello`にアクセス
     - **Hello World!** と表示されたら成功！
 
-#### SampleController.java
+#### 1.2.2.1. SampleController.java
 ```java
 package hello;
 
@@ -89,7 +89,7 @@ public class SampleController {
 }
 ```
 
-#### Main.java
+#### 1.2.2.2. Main.java
 ```java
 package hello;
 
@@ -106,7 +106,7 @@ public class Main {
 ```
 
 
-### 3. frontend - vue.jsを構築
+### 1.2.3. frontend - vue.jsを構築
 
 Javaと違って実装するファイルが多いのでファイルの内容は割愛。
 
@@ -133,7 +133,7 @@ Javaと違って実装するファイルが多いのでファイルの内容は�
     - `"build": "mkdir -p build && cp src/index.html build/index.html && webpack",`
 1. `build`フォルダにindex.htmlとbundle.jsなどが出来てたらOK
 
-### 4. アプリケーションを起動する
+### 1.2.4. アプリケーションを起動する
 
 1. Web APIを起動
     - cd backend
@@ -143,8 +143,13 @@ Javaと違って実装するファイルが多いのでファイルの内容は�
     - 動かないときは、ブラウザのWeb開発ツールを開いてコンソールやデバッグしてみる。
 
 
-
-
-### 参考
-- [Spring Boot](https://projects.spring.io/spring-boot/)
-- [Spring Boot 使い方メモ - Qiita](http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a#web-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8B)
+## 1.3. 参考
+- Spring Boot
+    - [Spring Boot](https://projects.spring.io/spring-boot/)
+    - [Spring Boot 使い方メモ - Qiita](http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a#web-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8B)
+    - [Spring Boot - CORS](https://docs.spring.io/spring/docs/4.2.x/spring-framework-reference/html/cors.html)
+- Vue.js関連
+    - [GUIアプリケーションアーキテクチャ総合！みたいなやつ書いてる](http://nekogata.hatenablog.com/entry/2017/03/26/132150)
+        - この記事読んでフロントエンド開発やってみようと思った。
+- [materializecss](http://materializecss.com/)
+    - 簡単にキレイになって好き
